@@ -1,0 +1,11 @@
+#logo{
+    font-family: 'Caveat Brush', cursive;
+    font-size: 25px;
+}
+.login-status{
+    width: 20px;
+    height: 20px;
+}   
+.navbar-light .navbar-nav .nav-link:hover {
+    color: rgba(21, 165, 14, 0.7);
+}
