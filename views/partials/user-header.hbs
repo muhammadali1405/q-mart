@@ -5,11 +5,11 @@
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a id="logo" class="navbar-brand "> Quil<span>🍏</span>n <span class="logo_bold"> Mart🛒</span>
+        <a id="logo" class="navbar-brand ml-5"> Quil<span>🍏</span>n <span class="logo_bold"> Mart</span>
         </a>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav mr-auto ml-auto">
 
 
                 <li class="nav-item">
@@ -33,11 +33,25 @@
 
                     </li-->
 
+
+                {{#if user}}
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Cart <span class="sr-only">(current)</span></a>
-
-
+                    <a class="nav-link" style="color:rgb(0, 0, 0);" href="/cart">
+                        {{user.name}}
+                    </a>
+                   
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" style="color:rgb(36, 20, 20);" href="/logout">
+                    Logout
+                    </a>
+                   
+                </li>
+                {{else}}
+                <li class="nav-item">
+                    <a class="nav-link" href="/login"> Login </a>
+                </li>
+                {{/if}}
                 <!--li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -54,19 +68,23 @@
             </ul>
 
         </div>
-        
 
 
-        
+
+
 
         <div class="login-status mr-5 ">
-            <a href=""><img src="/images/user.svg" alt=""></a>
+            <a href="/cart" style="text-decoration:none;color:rgb(151, 151, 151);"> <img src="/images/cart.svg"
+                    alt="Cart">
+                <p style="font-size: 12px;"> Cart</p>
+            </a>
+
         </div>
         <div class="">
-                <form class="form-inline my-4 my-lg-0" >
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+            <form class="form-inline my-4 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
         </div>
 
 

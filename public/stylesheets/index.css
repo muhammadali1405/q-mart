@@ -1,4 +1,4 @@
-#logo{
+#logo, .logo_bold{
     font-family: 'Caveat Brush', cursive;
     font-size: 25px;
 }
@@ -8,4 +8,30 @@
 }   
 .navbar-light .navbar-nav .nav-link:hover {
     color: rgba(21, 165, 14, 0.7);
+}
+.item{
+    margin-top: 20px;
+    margin-left: 2%;
+}
+*{
+    font-family: 'Manjari', sans-serif;
+
+}
+.qty_minus{
+    background-image: url(/images/minus.svg) ;
+    
+}
+.qty_plus{
+    background-image: url(/images/plus.svg) ;
+    
+
+}
+.cart_btn .qty_add {
+	width: 25px;
+	height: 25px;
+	border: 0;
+	box-shadow: none;
+	font-size: 0;
+	padding: 0;
+	margin: 0;
 }
