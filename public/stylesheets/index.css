@@ -17,15 +17,7 @@
     font-family: 'Manjari', sans-serif;
 
 }
-.qty_minus{
-    background-image: url(/images/minus.svg) ;
-    
-}
-.qty_plus{
-    background-image: url(/images/plus.svg) ;
-    
 
-}
 .cart_btn .qty_add {
 	width: 25px;
 	height: 25px;
@@ -34,4 +26,20 @@
 	font-size: 0;
 	padding: 0;
 	margin: 0;
+}
+.minus{
+    background: rgb(189, 189, 202);
+    border:none ;
+    border-radius: 5px;
+
+}
+.plus{
+    background: rgb(201, 201, 223);
+    border:none ;
+    border-radius: 5px;
+
+}
+.plus:hover , .minus:hover{
+    background: rgb(162, 162, 162);
+
 }

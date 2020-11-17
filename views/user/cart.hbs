@@ -1,43 +1,60 @@
 <section>
     <div class="container">
-         <table class="table mt-5">
-            <thead class="thead-dark">
-                <tr>
-                    <th></th>
-                    <th scope="col">Item</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Quantity</th>
-                    <th scope="col">Amount</th>
-                    <th></th>
-                    
+        <div style="overflow-x:auto;">
+
+            <table class="table mt-5">
+                <thead>
+                    <tr class=" table-sm table-dark">
+                        <th></th>
+                        <th scope="col">Item</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Total Amount</th>
+                        <th></th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {{#each products}}
+
+                    <tr>
+                      
+                        <td><img style="width: 50px;height:50px" src="/product-images/{{this.product._id}}.jpg" alt=""></td>
+                        <td>{{this.product.name}}</td>
+                        
+
+                        <td>{{this.product.price}}</td>
+
+                        <td  style="min-width: 114px;">
+                            <button class="cart-item-count mr-2 minus" onclick="changeQuantity('{{this._id}}','{{this.product._id}}',-1)">-</button>
+                               <span id="{{this.product._id}}"> {{this.quantity}} </span>
+                            <button class="cart-item-count ml-2 plus" onclick="changeQuantity('{{this._id}}','{{this.product._id}}',1)"> +</button>
+                        </td>
+                        <td id="amount"> </td>
+
+
+                        <td>
+                            <a href="" class="btn btn-sm btn-outline-danger"> Remove </a>
+
+                        </td>
+                        
+                    </tr>
+                    {{/each}}
+                <tr class="table table-dark total" style="color: rgb(23, 29, 112);">
+                    <td></td>
+                    <td></td>
+                    <td class="text-right" style="font-family: 'Fugaz One', cursive;">Total  </td>
+                    <td class="text-left" style="font-family: 'Fugaz One', cursive;">Amount:</td>
+                    <td></td>
+                    <td></td>
+
                 </tr>
-            </thead>
-            <tbody>
-
-             {{#each products}}
-                <tr>
-                    <td><img style="width: 50px;height:50px" src="/product-images/{{this._id}}.jpg" alt=""></td>
-                    <td>{{this.name}}</td>
-
-                    
-                    <td>{{this.price}}</td>
-
-                    <td>
-                        <button class="cart-item-count mr-2">-</button>0.5<button class="cart-item-count ml-2"> +</button>
-                    </td>
-                    <td id="amount"> </td>
-
-                    
-                    <td>
-                    <a href="" class="btn btn-danger"> Remove </a>
-                   
-                    </td>                    
-                </tr> 
-                {{/each}}               
 
 
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </section>

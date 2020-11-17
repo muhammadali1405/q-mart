@@ -69,18 +69,24 @@ router.get('/logout', (req, res) => {
 })
 
 router.get('/cart', verifyLogin,async(req, res ) => {
-  let products=await userHelper.
-  
-  getCartProducts(req.session.user._id)
+  let products=await userHelper.getCartProducts(req.session.user._id)
   res.render('user/cart',{products,user:req.session.user})
 })
 
-router.get('/add-to-cart/:id',verifyLogin,(req,res)=>{
-
+router.get('/add-to-cart/:id',(req,res)=>{
+  console.log("here at router user js");
+  console.log(req.params.id);
   userHelper.addToCart(req.params.id,req.session.user._id).then(()=>{
-    res.redirect('/')
+    res.json({status:true})
   })
 
+})
+
+router.post('/change-product-quantity',(req,res,next)=>{
+  console.log(req.body);
+  userHelper.changeProductQuantity(req.body).then((response)=>{
+    res.json(response)
+  })
 })
 
 
