@@ -178,21 +178,23 @@ module.exports = {
                         as: 'product'
 
                     }
-                },
+                }
+                ,
                 {
                     $project: {
                         item: 1, quantity: 1, product: { $arrayElemAt: ['$product', 0] }
                     }
-                },
+                }
+                ,
                 {
                     $group:{
                         _id:null,
-                        total:{$sum:{$multiply:['$quantity',parseInt('$product.price')]}}
+                        total:{$sum:{$multiply:['$quantity','$product.price']}}
                     }
                 }
 
             ]).toArray()
-            console.log(total);
+            console.log(total[0].total);
             resolve(total)
         })
 
