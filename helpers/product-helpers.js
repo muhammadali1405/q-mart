@@ -29,17 +29,18 @@ module.exports = {
             })
         })
     },
-    getProductDetails: (proId) => {
+    getProductDetails: (_id) => {
         return new Promise((resolve, reject) => {
-            db.get().collection(collection.PRODUCT_COLLECTION).findOne({ _id: objectId(prodId) }).then((product) => {
+            db.get().collection(collection.PRODUCT_COLLECTION).findOne({ _id: objectId(_id) }).then((product) => {
                 resolve(product)
             })
         })
     },
     
-    updateProduct: (proId, proDetails) => {
+    updateProduct: (_id, proDetails) => {
         return new Promise((resolve, reject) => {
-            db.get().collection(collection.PRODUCT_COLLECTION).updateOne({ _id: objectId(proId) }, {
+            console.log(_id);
+            db.get().collection(collection.PRODUCT_COLLECTION).updateOne({ _id: objectId(_id) }, {
                 $set: {
                     name: proDetails.name,
                     description: proDetails.description,

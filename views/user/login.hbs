@@ -1,5 +1,5 @@
 
-
+<div class="container">
 <form action="/login" method="POST">
   <h1>Login Page</h1><br>
   {{#if loginErr}}
@@ -23,9 +23,12 @@
     <input type="checkbox" onclick="myFunction()">Show Password 
   
   </form>
-  <a href="/signup"><p class="signup" style="transition: all 0.1s;">Dont have an Account...!! Click Here</p></a>
+  <a href="/signup"><p class="signup mt-3 " style="transition: all 0.1s;">Dont have an Account...!! Click Here</p></a>
 
+</div>
 </body>
+
+
 <script>
   function myFunction() {
   var x = document.getElementById("exampleInputPassword1");

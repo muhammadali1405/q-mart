@@ -13,13 +13,13 @@
           </div>
         </a>
         <div class="cart_btn">
-          <button type="button" data-sku="490155015" class="qtybtn qty_add qty_minus ">-</button>
-          <span class="qty_count"><input style="width: 6rem;" type="text" placeholder="value"></span>
-          <button type="button" data-sku="490155015" data-max="4" class="qtybtn qty_add qty_plus ">+</button>
+          <!--button type="button"  onclick="decrement()"  data-sku="490155015" class="qtybtn qty_add qty_minus ">-</button-->
+          <span class="qty_count"><input id="demoInput" min="0.5" max="10" step="0.5" style="width: 6rem;" type="number" placeholder="quantity"></span>
+          <!--button type="button" onclick="increment()" data-sku="490155015" data-max="4" class="qtybtn qty_add qty_plus ">+</button-->
         </div>
 
 
-        <button class="btn btn-warning mt-3" style="padding: 2px 1px;font-size:12px;" id="addtocart-button"> Add to cart
+        <button class="btn btn-warning mt-3" style="padding: 2px 1px;font-size:12px;" class="addtocart-button"> Add to cart
         </button>
       </div>
       {{/each}}

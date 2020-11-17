@@ -37,6 +37,9 @@ router.get('/signup', (req, res) => {
 router.post('/signup', (req, res) => {
   userHelper.doSignup(req.body).then((response) => {
     console.log(response);
+    req.session.loggedIn=true
+    req.session.user = response
+    res.redirect('/')
   })
 })
 
