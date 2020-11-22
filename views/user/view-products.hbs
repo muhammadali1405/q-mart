@@ -4,11 +4,14 @@
       {{#each products}}
 
       <div class="item" style="width: 10rem;height:20rem;">
-        <a href="#" style="text-decoration: none;"> <img style="width: 90%;height:60%;" src="/product-images/{{this._id}}.jpg" class="card-img-top"
-            alt="...">
+        <a href="#" style="text-decoration: none;"> 
+          <img style="width: 90%;height:60%;" src="/product-images/{{this._id}}.jpg" class="card-img-top" alt="...">
           <div class="item-details">
-            <p class="item-name"> <span style="    font-family: 'Noto Sans', sans-serif;color:black;">{{this.name}} <br> Rs: </span><span
-                id="price" class="price"
+            <p class="item-name"> <span style="    font-family: 'Noto Sans', sans-serif;color:black;">{{this.name}} 
+              <br> Mrp: {{this.mrp}}
+             <span class="mrp"></span><br>
+             Rs: </span> 
+             <span id="price" class="price"
                 style="color: green;font-family: 'Space Grotesk', sans-serif;">{{this.price}}/-</span></p>
           </div>
         </a>

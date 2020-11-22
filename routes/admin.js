@@ -22,7 +22,11 @@ router.get('/add-product', function (req, res) {
 
 router.post('/add-product', (req, res) => {
   console.log(req.body);
-  console.log(req.files.image)
+  console.log(req.files.image);
+
+  req.body.mrp=parseInt(req.body.mrp)
+  req.body.price=parseInt(req.body.price)
+  console.log(req.body);
 
   productHelper.addProduct(req.body, (id) => {
     let image = req.files.image
@@ -54,6 +58,8 @@ router.get('/edit-product/:id', async (req, res) => {
 router.post('/edit-product/:id', (req, res) => {
   //console.log(req.params.id);
   let id=req.params.id
+  console.log(req.params);
+  
   productHelpers.updateProduct(req.params.id, req.body).then(() => {
     res.redirect('/admin')
     if(req.files.image){

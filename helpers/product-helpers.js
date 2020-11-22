@@ -40,11 +40,14 @@ module.exports = {
     updateProduct: (_id, proDetails) => {
         return new Promise((resolve, reject) => {
             console.log(_id);
+            proDetails.price=parseInt(proDetails.price)
+            proDetails.mrp=parseInt(proDetails.mrp)
             db.get().collection(collection.PRODUCT_COLLECTION).updateOne({ _id: objectId(_id) }, {
                 $set: {
                     name: proDetails.name,
                     description: proDetails.description,
                     price: proDetails.price,
+                    mrp:proDetails.mrp,
                     category: proDetails.category
                 }
             }).then((response) => {
