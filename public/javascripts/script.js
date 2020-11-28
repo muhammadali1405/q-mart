@@ -1,5 +1,5 @@
 function addToCart(proId) {
-    $.ajax({
+   $.ajax({
         url: '/add-to-cart/' + proId,
         method: 'get',
         success: (response) => {
@@ -11,6 +11,7 @@ function addToCart(proId) {
             alert("Added sucessfully, go to Cart to proceed to checkout")
         }
     })
+    
 }
 
 function changeQuantity(cartId, proId, count) {
