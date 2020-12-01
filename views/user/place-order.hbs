@@ -1,19 +1,19 @@
-<form>
+<form action="" id="checkout-form">
     <div class="container mt-5">
-        <div class="form-group">
+        <!--div class="form-group">
             <label>House Name and Number</label>
             <input type="text" class="form-control" name="houseNo">
-        </div>
+        </div-->
         <div class="form-group">
             <label>Address and Locality</label>
             <input type="text" class="form-control" name="address">
         </div>
 
         <div class="form-row">
-            <div class="form-group col-md-6">
+            <!--div class="form-group col-md-6">
                 <label>City</label>
                 <input type="text" class="form-control" name="city">
-            </div>
+            </div-->
             <div class="form-group col-md-4">
                 <label>Village</label>
                 <input type="text" class="form-control" name="village">
@@ -22,19 +22,41 @@
                 <label>LandMark</label>
                 <input type="text" class="form-control" name="landmark">
             </div>
-            <div class="form-group col-md-2">
+            <hr>
+            <input type="text" name="userId" value="{{user}}" hidden>
+        
+        </div>
+        {{!-- <div class="form-row" class="form-group col-md-5">
                 <label>Phone Number</label>
                 <input type="phonenumber" class="form-control" name="landmark" style="" maxlength="10">
-            </div>
-        </div>
-        <div class="form-check  payment">
-            <input class="form-check-input" type="radio" name="exampleRadios" value="cod">
+            </div> --}}
+        <div class="form-check mt-5 payment">
+            <input class="form-check-input" type="radio" name="paymentMethod" value="cod">
             <label> COD</label>
             <span class="ml-5">
-                <input class="form-check-input" type="radio" name="exampleRadios" value="online">
+                <input class="form-check-input" type="radio" name="paymentMethod" value="online">
                 <label> Online payment</label></span>
+        </div>
+        <div>
+            <h3> <b> Total Amount: {{total}}/-</b></h3>
         </div>
 
         <button type="submit" class="btn btn-primary mt-4">Save Address & Continue</button>
     </div>
 </form>
+
+<script>
+
+    $("#checkout-form").submit((e)=>{
+        e.preventDefault()
+        $.ajax({
+            url:'/place-order',
+            method:'post',
+            data:$('#checkout-form').serialize(),
+            success:(response)=>{
+                alert(response)
+            }
+        })
+    })
+
+</script>

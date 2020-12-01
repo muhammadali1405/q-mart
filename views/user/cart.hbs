@@ -9,7 +9,6 @@
                         <th scope="col">Item</th>
                         <th scope="col">Price</th>
                         <th scope="col">Quantity</th>
-                        <th scope="col">Amount</th>
                         <!--th></th-->
 
                     </tr>
@@ -20,18 +19,17 @@
 
                     <tr>
                       
-                        <td><img style="width: 50px;height:50px" src="/product-images/{{this.product._id}}.jpg" alt=""></td>
+                        <td><img style="width: 50px;height:50px" src="/product-images/{{this.product._id}}.jpg" alt="{{this.product.name}}"></td>
                         <td>{{this.product.name}}</td>
                         
 
-                        <td>{{this.product.price}}</td>
+                        <td>Rs: {{this.product.price}}</td>
 
                         <td  style="min-width: 114px;">
-                            <button class="cart-item-count mr-2 minus" onclick="changeQuantity('{{this._id}}','{{this.product._id}}',-1)">-</button>
+                            <button class="cart-item-count mr-2 minus" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',-1)">-</button>
                                <span id="{{this.product._id}}"> {{this.quantity}} </span>
-                            <button class="cart-item-count ml-2 plus" onclick="changeQuantity('{{this._id}}','{{this.product._id}}',1)"> +</button>
+                            <button class="cart-item-count ml-2 plus" onclick="changeQuantity('{{this._id}}','{{this.product._id}}','{{../user}}',1)"> +</button>
                         </td>
-                        <td id="amount"> </td>
 
 
                         <!--td>
@@ -42,12 +40,9 @@
                     </tr>
                     {{/each}}
                 <tr class="table table-dark total" style="color: rgb(53, 31, 49);">
-                    <td></td>
-                    <td></td>
-                    <td class="text-right" style="font-family: 'Fugaz One', cursive;">Total  </td>
+                    <td colspan="2" class="text-right" style="font-family: 'Fugaz One', cursive;">Total  </td>
                     <td class="text-left" style="font-family: 'Fugaz One', cursive;">Amount:</td>
-                    <td></td>
-                    <td></td>
+                    <td> <b > Rs : </b><span id="total" style="font-weight: 800;font-size:18px;">{{total}}</span> </td>
 
                 </tr>
                   <a href="/place-order" class="btn btn-outline-secondary float-right mt-4 mb-4 pl-5 pr-5" > <b> Checkout </b></a>
