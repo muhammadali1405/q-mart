@@ -72,6 +72,7 @@ router.get('/logout', (req, res) => {
 router.get('/cart', verifyLogin,async(req, res ) => {
   let products=await userHelper.getCartProducts(req.session.user._id)
   let total=await userHelper.getTotalAmount(req.session.user._id)
+  console.log('DARK   SCN   '+products);
   res.render('user/cart',{products,user:req.session.user._id,total})
 })
 
@@ -97,11 +98,22 @@ router.get('/place-order',verifyLogin, async(req,res)=>{
   res.render('user/place-order',{total,user:req.session.user._id})
 })
 
-router.post('/place-order',(req,res)=>{
-  userHelpers.placeOrder(req.body).then((response)=>{
-
+router.post('/place-order',async(req,res)=>{
+  let products=await userHelper.getCartProduct(req.body.userId)
+  let totalPrice=await userHelper.getTotalAmount(req.body.userId)
+  userHelper.placeOrder(req.body,products,totalPrice).then((response)=>{
+    res.json({status:true})
   })
   console.log(req.body);
+})
+
+
+router.get('/myOrders', verifyLogin,async(req, res ) => {
+  console.log('user id :'+req.session.user._id);
+  let order=await userHelper.getOrders(req.session.user._id)
+  console.log(order);
+  console.log(order.products);
+  res.render('user/myOrders',{user:req.session.user._id,order})
 })
 
 module.exports = router;

@@ -1,0 +1,52 @@
+<h2 class="header" style="margin-left: 35%;">My Orders</h2>
+
+
+<section class="container pt-3">
+    <table>
+        <th> Sl No</th>
+        <th>Items</th>
+        <th>Total Amount</th>
+        <th>Order status</th>
+
+        {{#each order}}
+        <tr>
+            <td class="nr" style="width: 10%;"></td>
+            <td>name</td>
+            <td>{{getTotalAmount}}</td>
+            <td>{{status}}</td>
+        </tr>
+
+        {{/each}}
+
+    </table>
+    
+
+</section>
+
+<style>
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+
+    }
+
+    td,
+    th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #ecf2ff;
+    }
+</style>
+
+<script type="text/javascript">
+    var a = document.getElementsByClassName("nr");
+    for (var i = 0; i < a.length; i++) {
+        a[i].innerHTML = (i + 1) + ".";
+    }
+</script>

@@ -199,8 +199,44 @@ module.exports = {
         })
 
     },
-    placeOrder:(order)=>{
-        
+    placeOrder:(order,products,price)=>{
+        return new Promise((resolve,reject)=>{
+            console.log(order,products,price);
+            let status=order.paymentMethod==='cod'?'placed':'pending'
+            order.number=parseInt(order.number)
+            let orderObj={
+                deliveryDetails:{
+                    address:order.address,
+                    village:order.village,
+                    landmark:order.landmark,
+                    number:order.number
+                },
+                userId:objectId(order.userId),
+                paymentMethod:order.paymentMethod,
+                products:products,
+                getTotalAmount:price,
+                status:status,
+                date:new Date()
+            }
+            db.get().collection(collection.ORDER_COLLECTION).insertOne(orderObj).then((response)=>{
+                db.get().collection(collection.CART_COLLECTION).removeOne({user:objectId(order.userId)})
+                resolve()
+            })
+        })
+
+    },
+    getCartProduct:(userId)=>{
+        return new Promise(async(resolve,reject)=>{
+            let cart=await db.get().collection(collection.CART_COLLECTION).findOne({user:objectId(userId)})
+            resolve(cart.products)
+        })
+    },
+    getOrders:(userId)=>{
+        return new Promise(async(resolve,reject)=>{
+            let order=await db.get().collection(collection.ORDER_COLLECTION).find({userId:objectId(userId)}).toArray()
+            console.log(order);
+            resolve(order)
+        })
     }
 
 }
