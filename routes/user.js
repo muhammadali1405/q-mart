@@ -114,7 +114,7 @@ router.post('/place-order',async(req,res)=>{
 
 
 router.get('/myOrders', verifyLogin,async(req, res ) => {
-  let user = req.session.user
+  let user = req.session.user._id
   console.log('user id :'+req.session.user._id);
   let order=await userHelper.getOrders(req.session.user._id)
   if(req.session.user){
