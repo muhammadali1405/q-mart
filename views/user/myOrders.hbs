@@ -6,15 +6,28 @@
         <th> Sl No</th>
         <th>Items</th>
         <th>Total Amount</th>
+        <th>Delivery Address</th>
         <th>Order status</th>
 
         {{#each order}}
         <tr>
             <td class="nr" style="width: 10%;"></td>
-            <td>{{#each itemDetails}}
-            {{product.name}} (Qty: {{quantity}}) <br>
-            {{/each}}</td>
+            <td>
+                <table>
+                    <th>Item</th>
+                    <th>Qty</th>
+                    {{#each itemDetails}}
+                    <tr>
+                        <td>{{product.name}}</td>
+                        <td>{{quantity}}</td>
+                    </tr>
+                    {{/each}}
+                </table>
+            </td>
             <td>{{getTotalAmount}}</td>
+            <td>
+                {{deliveryDetails.address}}, {{deliveryDetails.village}} Village,near {{deliveryDetails.landmark}}
+            </td>
             <td>{{status}}</td>
         </tr>
 

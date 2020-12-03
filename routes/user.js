@@ -70,10 +70,14 @@ router.get('/logout', (req, res) => {
 })
 
 router.get('/cart', verifyLogin,async(req, res ) => {
+  let user = req.session.user
   let products=await userHelper.getCartProducts(req.session.user._id)
   let total=await userHelper.getTotalAmount(req.session.user._id)
+  if(req.session.user){
+    cartCount=await userHelper.getCartCount(req.session.user._id)
+  }
   console.log('DARK   SCN   '+products);
-  res.render('user/cart',{products,user:req.session.user._id,total})
+  res.render('user/cart',{products,user:req.session.user._id,total,user,cartCount})
 })
 
 router.get('/add-to-cart/:id',(req,res)=>{
@@ -94,8 +98,9 @@ router.post('/change-product-quantity',(req,res,next)=>{
 })
 
 router.get('/place-order',verifyLogin, async(req,res)=>{
+  let user = req.session.user
   let total=await userHelper.getTotalAmount(req.session.user._id)
-  res.render('user/place-order',{total,user:req.session.user._id})
+  res.render('user/place-order',{total,user:req.session.user._id,user})
 })
 
 router.post('/place-order',async(req,res)=>{
@@ -109,11 +114,15 @@ router.post('/place-order',async(req,res)=>{
 
 
 router.get('/myOrders', verifyLogin,async(req, res ) => {
+  let user = req.session.user
   console.log('user id :'+req.session.user._id);
   let order=await userHelper.getOrders(req.session.user._id)
+  if(req.session.user){
+    cartCount=await userHelper.getCartCount(req.session.user._id)
+  }
   console.log(order);
   console.log(order.products);
-  res.render('user/myOrders',{user:req.session.user._id,order})
+  res.render('user/myOrders',{user:req.session.user._id,order,user,cartCount})
 })
 
 module.exports = router;
