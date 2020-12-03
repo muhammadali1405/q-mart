@@ -42,22 +42,23 @@
 
       <div class="clash-card__unit-name">{{this.name}} </div>
       
-      <DIV ID="SectionName" STYLE="display:block;color:grey;">{{this.description}}</DIV>
+      <DIV ID="SectionName" STYLE="display:block;color:rgb(85, 84, 84);">{{this.description}}</DIV>
 
 
 
-      <div class="clash-card__unit-description">
-        <span id="price" class="price" style="color: rgb(0, 0, 0);font-family: 'Space Grotesk', sans-serif;">Our Price :
+      <div class="clash-card__unit-description" style="color: rgb(0, 0, 0)">
+        <span id="price" class="price" style="color: rgb(34, 44, 20);font-family: 'Space Grotesk', sans-serif;">Our Price :
           {{this.price}}/-</span>
         <br>
-        Mrp: <span style="text-decoration: line-through;"> {{this.mrp}} </span>
+        Mrp: <span style="text-decoration: line-through;color:rgb(39, 25, 25);"> {{this.mrp}} </span>
       </div>
       <!--a class="btn btn-warning addtocart-button mt-3" style="padding: 2px 1px;font-size:12px;margin-bottom:5px;"
         href="/add-to-cart/{{this._id}}"> Add to Cart</a-->
-      <button onclick="addToCart('{{this._id}}')" class="btn btn-success addtocart-button mt-3"
+      <button onclick="addToCart('{{this._id}}')" id="cartbtn" class="btn addtocart-button mt-3"
         style="padding: 2px 1px;font-size:12px;margin-bottom:5px;"> Add to cart </button>
 
-    </div> <!-- end clash-card barbarian-->
+    </div> 
+
 
     {{/each}}
   </div> <!-- end wrapper -->
@@ -100,12 +101,12 @@
 
 
   .clash-card {
-    background: white;
+    background: #ffffff;
     width: 165px;
     display: inline-block;
     margin: auto;
     text-align: center;
-    box-shadow: 4px 11px 26px -19px #2900f0;
+    box-shadow: 4px 11px 26px -19px #E4BF6E;
     z-index: 9999;
     float: left;
     margin-left: 15px;
@@ -146,7 +147,7 @@
 
   .clash-card__unit-name {
     font-size: 15px;
-    color: black;
+    color: rgb(0, 0, 0);
     font-weight: 900;
   }
 
@@ -155,7 +156,7 @@
     background: $barbarian;
 
     .one-third {
-      border-right: 1px solid #BD7C2F;
+      border-right: 1px solid #ff8c00;
     }
   }
 
@@ -215,5 +216,13 @@
     right: 100px;
     z-index: 999;
   }
+  .addtocart-button{
+  background: #264B77;
+  color: rgb(255, 255, 255);
+  }
+  .addtocart-button:hover{
+    background: rgb(202, 8, 228);
+  }
+
 </style>
 

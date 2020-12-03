@@ -200,9 +200,42 @@ module.exports = {
 
     },
     placeOrder:(order,products,price)=>{
-        return new Promise((resolve,reject)=>{
+        return new Promise(async(resolve,reject)=>{
             console.log(order,products,price);
             let status=order.paymentMethod==='cod'?'placed':'pending'
+            let user = await db.get().collection(collection.USER_COLLECTION).findOne({ _id: objectId(order.userId) })
+
+            let ordered = await db.get().collection(collection.CART_COLLECTION).aggregate([
+                {
+                    $match: { user: objectId(order.userId) }
+                },
+                {
+                    $unwind: '$products'
+                },
+                {
+                    $project: {
+                        item: '$products.item',
+                        quantity: '$products.quantity'
+                    }
+                },
+                {
+                    $lookup: {
+                        from: collection.PRODUCT_COLLECTION,
+                        localField: 'item',
+                        foreignField: '_id',
+                        as: 'product'
+
+                    }
+                },
+                {
+                    $project: {
+                        item: 1, quantity: 1, product: { $arrayElemAt: ['$product', 0] }
+                    }
+                }
+
+            ]).toArray()
+            console.log(ordered);
+            console.log(user);
             order.number=parseInt(order.number)
             let orderObj={
                 deliveryDetails:{
@@ -212,11 +245,14 @@ module.exports = {
                     number:order.number
                 },
                 userId:objectId(order.userId),
+                name:user.name,
+                newmobile:user.mobile,
                 paymentMethod:order.paymentMethod,
                 products:products,
                 getTotalAmount:price,
                 status:status,
-                date:new Date()
+                date:new Date(),
+                itemDetails:ordered
             }
             db.get().collection(collection.ORDER_COLLECTION).insertOne(orderObj).then((response)=>{
                 db.get().collection(collection.CART_COLLECTION).removeOne({user:objectId(order.userId)})

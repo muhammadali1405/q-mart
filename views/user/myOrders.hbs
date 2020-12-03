@@ -11,7 +11,9 @@
         {{#each order}}
         <tr>
             <td class="nr" style="width: 10%;"></td>
-            <td>name</td>
+            <td>{{#each itemDetails}}
+            {{product.name}} (Qty: {{quantity}}) <br>
+            {{/each}}</td>
             <td>{{getTotalAmount}}</td>
             <td>{{status}}</td>
         </tr>
