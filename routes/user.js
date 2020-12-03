@@ -70,14 +70,14 @@ router.get('/logout', (req, res) => {
 })
 
 router.get('/cart', verifyLogin,async(req, res ) => {
-  let user = req.session.user
+  let user = req.session.user._id
   let products=await userHelper.getCartProducts(req.session.user._id)
   let total=await userHelper.getTotalAmount(req.session.user._id)
   if(req.session.user){
     cartCount=await userHelper.getCartCount(req.session.user._id)
   }
   console.log('DARK   SCN   '+products);
-  res.render('user/cart',{products,user:req.session.user._id,total,user,cartCount})
+  res.render('user/cart',{products,user:req.session.user._id,total,cartCount,user})
 })
 
 router.get('/add-to-cart/:id',(req,res)=>{
