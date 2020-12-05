@@ -1,9 +1,9 @@
 <h2 class="header" style="margin-left: 35%;">My Orders</h2>
 
 
-<section class="container pt-3">
+{{!-- <section class="container pt-3">
     <table>
-        <th> Sl No</th>
+        <th>Sl No</th>
         <th>Items</th>
         <th>Total Amount</th>
         <th>Delivery Address</th>
@@ -36,9 +36,56 @@
     </table>
     
 
-</section>
+</section> --}}
+
+
+<div class="whole" style="width: 360px;">
+    {{#each order}}
+    <a href="" style="text-decoration: none;color:black;">
+        <div class="each-order" style="padding:10px 10px 10px 10px;border-radius:7px;">
+            <h3 class="nr" style="width: 10%;"></h3>
+            <h3>Order Placed <span style="text-align:right;color:rgb(22, 179, 92);font-weight:700;">(Rs:
+                    {{getTotalAmount}}/-)</span></h3>
+            <div style="overflow-x:auto;">
+                <table style="width: 300px;overflow-x:auto;">
+                    <th>Item</th>
+                    <th>Qty</th>
+                    {{#each itemDetails}}
+                    <tr>
+                        <td>{{product.name}}</td>
+                        <td>{{quantity}}</td>
+                    </tr>
+                    {{/each}}
+                </table>
+            </div>
+            <div style="padding: 10px 0 10px 0;">
+                <h4>Delivery Address:</h4>
+                {{deliveryDetails.address}}, {{deliveryDetails.village}} Village, near {{deliveryDetails.landmark}}
+                <br>
+                <b>Contact:</b> {{deliveryDetails.number}}, {{newmobile}}
+                <h5 style="color: rgb(54, 58, 58);">Payment: {{paymentMethod}}</h5>
+
+            </div>
+
+        </div>
+    </a>
+    {{/each}}
+</div>
+
+
+
+
 
 <style>
+    .whole {
+        margin-left: 80px;
+        display: flex;
+    }
+
+    .each-order {
+        background: white;
+        margin-left: 30px;
+    }
 
     table {
         font-family: arial, sans-serif;
@@ -57,11 +104,22 @@
     tr:nth-child(even) {
         background-color: #ecf2ff;
     }
+
+    @media only screen and (max-width: 600px) {
+        .whole {
+            margin-left: 0px;
+            display: table;
+        }
+
+        .each-order {
+            margin: 10px 0 0 10px;
+        }
+    }
 </style>
 
 <script type="text/javascript">
     var a = document.getElementsByClassName("nr");
     for (var i = 0; i < a.length; i++) {
-        a[i].innerHTML = (i + 1) + ".";
+        a[i].innerHTML = "#" + (i + 1);
     }
 </script>
