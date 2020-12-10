@@ -6,7 +6,9 @@
     width: 20px;
     height: 40px;
 } 
- 
+ body{
+    background:#f3f3f3;
+ }
 .navbar-light .navbar-nav .nav-link{
     color: rgb(70, 70, 70);
     font-family: 'Catamaran', sans-serif;
@@ -23,9 +25,6 @@
 *{
     font-family: 'Manjari', sans-serif;
 
-}
-body{
-    background: #f3f3f3;
 }
 
 .cart_btn .qty_add {
@@ -59,3 +58,4 @@ body{
     height: 50px;
     padding-top: 12px;
 }
+

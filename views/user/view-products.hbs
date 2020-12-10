@@ -32,21 +32,21 @@
 
 <div class="slide-container">
 
-  <div class="wrapper">
+  <div class="wrapper " id="glasscont">
     {{#each products}}
     
-    <div class="clash-card barbarian">
+    <div class="clash-card glass barbarian">
       <div class="clash-card__image clash-card__image--barbarian">
         <img style="width: 90%;height:90%;" src="/product-images/{{this._id}}.jpg" alt="..." />
       </div>
 
-      <div class="clash-card__unit-name">{{this.name}} </div>
+      <div class="clash-card__unit-name two">{{this.name}} </div>
       
-      <DIV ID="SectionName" STYLE="display:block;color:rgb(85, 84, 84);">{{this.description}}</DIV>
+      <DIV ID="SectionName" class="three" STYLE="display:block;color:rgb(85, 84, 84);">{{this.description}}</DIV>
 
 
 
-      <div class="clash-card__unit-description" style="color: rgb(0, 0, 0)">
+      <div class="four clash-card__unit-description" style="color: rgb(0, 0, 0)">
         <span id="price" class="price" style="color: rgb(34, 44, 20);font-family: 'Space Grotesk', sans-serif;">Our Price :
           {{this.price}}/-</span>
         <br>
@@ -54,7 +54,7 @@
       </div>
       <!--a class="btn btn-warning addtocart-button mt-3" style="padding: 2px 1px;font-size:12px;margin-bottom:5px;"
         href="/add-to-cart/{{this._id}}"> Add to Cart</a-->
-      <button onclick="addToCart('{{this._id}}')" id="cartbtn" class="btn addtocart-button mt-3"
+      <button onclick="addToCart('{{this._id}}')" id="cartbtn" class="six btn addtocart-button mt-3"
         style="padding: 2px 1px;font-size:12px;margin-bottom:5px;"> Add to cart </button>
 
     </div> 
@@ -224,5 +224,30 @@
     background: rgb(202, 8, 228);
   }
 
+.glass {
+    display: inline-block;
+    background: rgba(255,255,255, 0.2);
+    position: relative;
+    z-index: 1;
+    backdrop-filter: blur(10px);
+    border: solid 2px transparent;
+    background-clip: padding-box;
+    box-shadow: 10px 10px 10px  rgba(46, 54, 68, 0.03);
+}
+
+
 </style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+<script>
+ const glass = document.getElementById('glasscont');
+ const tl = gsap.timeline({defaults: {ease: "power2.inOut", duration: 0.3}})
+    tl.from('img', { x: '-10%', opacity: 0})
+      .from('.one', { x: '-10%', opacity: 0})
+      .from('.two', { y: '-10%', opacity: 0})
+      .from('.three', { y: '-10%', opacity: 0})
+      .from('.four', { y: '-10%', opacity: 0})
+      .from('.six', { y: '-10%', opacity: 0})
+      
+</script>
 
