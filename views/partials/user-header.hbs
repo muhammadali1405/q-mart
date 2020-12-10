@@ -92,12 +92,12 @@
 
     </nav>
 </header>
-
-    <div class="element" >
+<div id="draggable" >
+    <div class="element" id="drag" >
         
-        <a href="whatsapp://send?abid=8606143897&text=Hello!" class=" mt-2 btn btn-success">
+        <a href="whatsapp://send?abid=8606143897&text=Hello!" class="one mt-2 btn btn-success">
             <i class="fa fa-whatsapp"></i></a>
-        <a href="tel:8606143897" class="mt-2 btn btn-primary "> <i class="fa fa-phone"></i></a>
+        <a href="tel:8606143897" class="mt-2 btn btn-primary two"> <i class=" fa fa-phone"></i></a>
         <br>
         <h1 class="ml6">
             <span class="text-wrapper">
@@ -107,12 +107,42 @@
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
     </div>
+</div>
 <style>
+    header{
+            font-family: 'Poppins', sans-serif;
+    }
+    #draggable{
+         position: absolute;
+         z-index: 9;
+    }
+    #drag {
+        cursor: move;
+        z-index: 10;
+        }
+    .one{
+        margin: 0 0 0 20px;
+    }
+    .two{
+        margin: 0 0 0 30px;
+    }
+    
     .element{
         position: fixed;
         margin-left:2% ;
-        top: 67%;
-        z-index: 1;
+        z-index: 2;
+        width: 180px;
+        padding: 10px;
+        height: 120px;
+        border-radius: 15px;
+        background-clip: padding-box;
+        font-family: 'Poppins', sans-serif;
+        background: rgba(255,255,255, 0.2);
+        backdrop-filter: blur(10px);
+        border: solid  2px transparent;
+        background-clip: padding-box;
+        box-shadow: 10px 10px 10px  rgba(46, 54, 68, 0.03);
+
     }
 
     .ml6 {
@@ -136,9 +166,14 @@
         line-height: 1em;
     }
     .letters{
-        color: rgb(255, 0, 0);
+        color: rgb(240, 22, 22);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+
 <script>
 
     // Wrap every letter in a span
@@ -159,4 +194,54 @@
             easing: "easeOutExpo",
             delay: 1000
         });
+
+ const tl = gsap.timeline({defaults: {ease: "power2.inOut", duration: 0.3}})
+    tl.from('img', { x: '-10%', opacity: 0})
+      .from('.one', { x: '-10%', opacity: 0})
+      .from('.two', { x: '-10%', opacity: 0})
+      
+ 
+//Make the DIV element draggagle:
+dragElement(document.getElementById("draggable"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    /* if present, the header is where you move the DIV from:*/
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    /* otherwise, move the DIV from anywhere inside the DIV:*/
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    /* stop moving when mouse button is released:*/
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
 </script>
