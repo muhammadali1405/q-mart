@@ -2,6 +2,9 @@
     font-family: 'Caveat Brush', cursive;
     font-size: 25px;
 }
+.navbar-brand{
+    margin-left: 8px;
+}
 .login-status{
     width: 20px;
     height: 40px;

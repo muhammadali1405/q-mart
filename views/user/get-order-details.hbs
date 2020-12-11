@@ -4,9 +4,9 @@
   <div class="wrapper " id="glasscont">
     {{#each products}}
     
-    <div class="clash-card glass barbarian">
+    <div class="clash-card glass barbarian" style="overflow:hidden;">
       <div class="clash-card__image clash-card__image--barbarian">
-        <img style="width: 90%;height:90%;" src="/product-images/{{product._id}}.jpg" alt="..." />
+        <img style="height:100%;" src="/product-images/{{product._id}}.jpg" alt="..." />
       </div>
 
       <div class="clash-card__unit-name ">{{product.name}} </div>
@@ -29,7 +29,7 @@
     <h6 style="font-weight: 900;">{{this.quantity}} Qty Ordered</h6>
 
     </div> 
-
+    
 
     {{/each}}
   </div> <!-- end wrapper -->
@@ -191,7 +191,6 @@
   }
 
 .glass {
-    display: inline-block;
     background: rgba(255,255,255, 0.2);
     position: relative;
     z-index: 1;

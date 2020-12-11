@@ -1,6 +1,7 @@
 
 <div class="container">
-<form action="/login" method="POST">
+<div class="box">
+<form action="/login" method="POST" >
   <h1>Login Page</h1><br>
   {{#if loginErr}}
     
@@ -9,25 +10,37 @@
   {{/if}}
   <div class="form-group">
     <label for="mobile">Mobile Number</label>
-    <input type="text" inputmode="tel" class="form-control" maxlength="10" id="mobile" name="mobile"  placeholder="Enter Your Mobile Number">
+    <input type="text" style="width: 220px;" inputmode="tel" class="form-control" maxlength="10" id="mobile" name="mobile"  placeholder="Enter Your Mobile Number">
   </div>
     <div class="form-group" >
       <label for="exampleInputPassword1">Password</label>
-      <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password" > 
+      <input type="password" style="width: 220px;" class="form-control" id="exampleInputPassword1" name="password" placeholder="Password" > 
     </div>
     <!--div class="form-group form-check">
       <input type="checkbox" class="form-check-input" id="exampleCheck1">
       <label class="form-check-label" for="exampleCheck1"></label>
     </div-->
-    <button type="submit" class="btn btn-success loginbtn"><span>Login </span></button>
-    <input type="checkbox" onclick="myFunction()">Show Password 
+      <input type="checkbox" onclick="myFunction()">Show Password 
+    <br>
+    <button type="submit" class="mt-3 btn btn-success loginbtn"><span>Login </span></button>
   
   </form>
-  <a href="/signup"><p class="signup mt-3 " style="transition: all 0.1s;">Dont have an Account...!! Click Here</p></a>
-
+  <a href="/signup"><p class="signup mt-5 " style="transition: all 0.1s;">Dont have an Account...!! Click Here</p></a>
+</div>
 </div>
 </body>
-
+<style>
+  h1{   font-family: poppins;
+  font-weight: 500;
+  }
+  .box{
+    background: rgb(246, 253, 242);
+    width: 300px;
+    margin:20px 0 0 0 ;
+    padding: 25px ;
+    border-radius: 20px;
+  }
+</style>
 
 <script>
   function myFunction() {

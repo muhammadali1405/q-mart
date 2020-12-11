@@ -1,21 +1,23 @@
 <div class="container">
-<form action="/signup" method="POST">
-  <div class="form-group mt-5">
-    <h1>New User</h1>
-    <label for="name">Name</label>
-    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Your Name">
-  </div>
-  <div class="form-group">
-    <label for="mobile">Mobile Number</label>
-    <input type="text" class="form-control" inputmode="tel" maxlength="10" id="mobile" name="mobile"
-      placeholder="Enter Your Mobile Number">
-  </div>
+  <div class="box">
+  <form action="/signup" method="POST" >
+    <div class="form-group">
+      <h1>New User</h1>
+      <label for="name">Name</label>
+      <input type="text" style="width: 220px;" class="form-control" id="name" name="name" placeholder="Enter Your Name">
+    </div>
+    <div class="form-group">
+      <label for="mobile">Mobile Number</label>
+      <input type="text" style="width: 220px;" class="form-control" inputmode="tel" maxlength="10" id="mobile"
+        name="mobile" placeholder="Enter Your Mobile Number">
+    </div>
 
-  <div class="form-group">
-    <label for="InputPassword1">Password</label>
-    <input type="password" class="form-control" id="Password1" name="password" placeholder="Password">
-  </div>
-  <!--div class="form-group">
+    <div class="form-group">
+      <label for="InputPassword1">Password</label>
+      <input type="password" style="width: 220px;" class="form-control" id="Password1" name="password"
+        placeholder="Password">
+    </div>
+    <!--div class="form-group">
         <label for="InputPassword1">Confirm Password</label>
         <input type="password" class="form-control" id="Password2" name="password2" placeholder="Confirm Password">
       </div>
@@ -23,16 +25,30 @@
       <input type="checkbox" class="form-check-input" id="exampleCheck1">
       <label class="form-check-label" for="exampleCheck1"></label>
     </div-->
-  <button type="submit" class="btn btn-success loginbtn"><span>Sign up </span></button>
-  <input type="checkbox" onclick="myFunction()">Show Password
+    <input type="checkbox" onclick="myFunction()">Show Password
+    <br>
+    <button type="submit" class="btn btn-success loginbtn"><span>Sign up </span></button>
 
-</form><br>
-<a href="/login">
-  <p class="signup" style="transition: all 0.1s;">Already have an Account..🧡 Login Here</p>
-</a>
-
+  </form><br>
+  <a href="/login">
+    <p class="signup" style="transition: all 0.1s;">Already have an Account..🧡 Login Here</p>
+  </a>
+</div>
 </div>
 </body>
+<style>
+  
+  h1{   font-family: poppins;
+  font-weight: 500;
+  }
+  .box{
+    background: rgb(246, 253, 242);
+    width: 300px;
+    margin:20px 0 0 0 ;
+    padding: 25px ;
+    border-radius: 20px;
+  }
+</style>
 <script>
 
   function myFunction() {
