@@ -1,34 +1,3 @@
-<!--div id="right_body">
-  <div class="container">
-    <div class="row">
-      {{#each products}}
-
-      <div class="item" style="width: 10rem;height:20rem;">
-        <a href="#" style="text-decoration: none;"> 
-          <img style="width: 90%;height:60%;" src="/product-images/{{this._id}}.jpg" class="card-img-top" alt="...">
-          <div class="item-details">
-            <p class="item-name"> <span style="    font-family: 'Noto Sans', sans-serif;color:black;">{{this.name}} 
-              <br> Mrp: {{this.mrp}}
-             <span class="mrp"></span><br>
-             Rs: </span> 
-             <span id="price" class="price"
-                style="color: green;font-family: 'Space Grotesk', sans-serif;">{{this.price}}/-</span></p>
-          </div>
-        </a>
-        <!--div class="cart_btn">
-          <button type="button"  onclick="decrement()"  data-sku="490155015" class="qtybtn qty_add qty_minus ">-</button>
-          <span class="qty_count"><input id="demoInput" min="0.5" max="10" step="0.5" style="width: 6rem;" type="number" placeholder="quantity"></span>
-          <button type="button" onclick="increment()" data-sku="490155015" data-max="4" class="qtybtn qty_add qty_plus ">+</button>
-        </div-->
-
-<!--a class="btn btn-warning addtocart-button mt-3" style="padding: 2px 1px;font-size:12px;" href="/add-to-cart/{{this._id}}"> Add to Cart</a-->
-<!--button onclick="addToCart('{{this._id}}')" class="btn btn-warning addtocart-button mt-3" style="padding: 2px 1px;font-size:12px;" > Add to cart </button>
-      </div>
-      {{/each}}
-    </div>
-  </div>
-</div-->
-
 
 <div class="slide-container">
 
@@ -37,25 +6,27 @@
     
     <div class="clash-card glass barbarian">
       <div class="clash-card__image clash-card__image--barbarian">
-        <img style="width: 90%;height:90%;" src="/product-images/{{this._id}}.jpg" alt="..." />
+        <img style="width: 90%;height:90%;" src="/product-images/{{product._id}}.jpg" alt="..." />
       </div>
 
-      <div class="clash-card__unit-name ">{{this.name}} </div>
+      <div class="clash-card__unit-name ">{{product.name}} </div>
       
-      <DIV ID="SectionName" STYLE="display:block;color:rgb(85, 84, 84);">{{this.description}}</DIV>
+      <DIV ID="SectionName" STYLE="display:block;color:rgb(85, 84, 84);">{{product.description}}</DIV>
 
 
 
       <div class=" clash-card__unit-description" style="color: rgb(0, 0, 0)">
         <span id="price" class="price" style="color: rgb(34, 44, 20);font-family: 'Space Grotesk', sans-serif;">Our Price :
-          {{this.price}}/-</span>
+          {{product.price}}/-</span>
         <br>
-        Mrp: <span style="text-decoration: line-through;color:rgb(39, 25, 25);"> {{this.mrp}} </span>
+        Mrp: <span style="text-decoration: line-through;color:rgb(39, 25, 25);"> {{product.mrp}} </span>
       </div>
       <!--a class="btn btn-warning addtocart-button mt-3" style="padding: 2px 1px;font-size:12px;margin-bottom:5px;"
-        href="/add-to-cart/{{this._id}}"> Add to Cart</a-->
-      <button onclick="addToCart('{{this._id}}')" id="cartbtn" class=" btn addtocart-button mt-3"
-        style="padding: 2px 1px;font-size:12px;margin-bottom:5px;"> Add to cart </button>
+        href="/add-to-cart/{{this._id}}"> Add to Cart</a>
+      <button onclick="addToCart('{{product._id}}')" id="cartbtn" class="six btn addtocart-button mt-3"
+        style="padding: 2px 1px;font-size:12px;margin-bottom:5px;"> Add to cart </button-->
+
+    <h6 style="font-weight: 900;">{{this.quantity}} Qty Ordered</h6>
 
     </div> 
 
@@ -64,11 +35,6 @@
   </div> <!-- end wrapper -->
 
 </div> <!-- end container -->
-
-
-
-
-
 
 
 

@@ -123,4 +123,9 @@ router.get('/myOrders', verifyLogin,async(req, res ) => {
   res.render('user/myOrders',{user:req.session.user._id,order,user,cartCount})
 })
 
+router.get('/get-order-details/:id',verifyLogin,async(req,res)=>{
+  let products = await userHelper.getOrderDetails(req.params.id)
+  res.render('user/get-order-details',{user:req.session.user,products})
+})
+
 module.exports = router;
