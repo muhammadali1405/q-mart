@@ -24,12 +24,12 @@
             </div>
             <hr>
             <input type="text" name="userId" value="{{user}}" hidden>
-        
+
         </div>
         <div class="form-row" class="form-group col-md-5">
-                <label>Phone Number</label>
-                <input type="phonenumber" inputmode="tel" class="form-control" name="number" style="" maxlength="10">
-            </div>
+            <label>Phone Number</label>
+            <input type="phonenumber" inputmode="tel" class="form-control" name="number" style="" maxlength="10">
+        </div>
         <div class="form-check mt-5 payment">
             <input class="form-check-input" type="radio" name="paymentMethod" value="cod">
             <label> COD</label>
@@ -48,38 +48,35 @@
 
 <script>
 
-    $("#checkout-form").submit((e)=>{
-        e.preventDefault()
+    $("#checkout-form").submit((e) => {
+        e.preventDefault();
         $.ajax({
-            url:'/place-order',
-            method:'post',
-            data:$('#checkout-form').serialize(),
-            success:(response)=>{
+            url: '/place-order',
+            method: 'post',
+            data: $('#checkout-form').serialize(),
+            success: (response) => {
                 alert(response)
-                if(response.codSuccess){
-                    location.href='/myOrders'
-                }else{
+                if (response.codSuccess) {
+                    location.href = '/myOrders'
+                } else {
+                    console.log("redirected to razor pay");
                     razorpayPayment(response)
                 }
             }
         })
     })
 
-    function razorpayPayment(order){
+    function razorpayPayment(order) {
         var options = {
-            "key": "rzp_test_h59U9j6i6V36DS", // Enter the Key ID generated from the Dashboard
-            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "key": "rzp_test_h59U9j6i6V36DS", // Enter the Key ID 
+            "amount": order.amount, // Amount is in currency subunits.
             "currency": "INR",
-            "name": "Venad Merchantile",
+            "name": "Venad Merchantiles",
             "description": "Test Transaction",
             "image": "https://example.com/your_logo",
             "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
-            "handler": function (response){
-                alert(response.razorpay_payment_id);
-                alert(response.razorpay_order_id);
-                alert(response.razorpay_signature);
-
-                verifyPayment(response,order)
+            "handler": function (response) {
+                verifyPayment(response, order)
             },
             "prefill": {
                 "name": "Gaurav Kumar",
@@ -98,14 +95,21 @@
 
 
     }
-    function verifyPayment(payment,order){
+    function verifyPayment(payment, order) {
         $.ajax({
-            url:'/verify-payment',
-            data:{
+            url: '/verify-payment',
+            data: {
                 payment,
                 order
             },
-            method:'post'
+            method: 'post',
+            success: (response) => {
+                if (response.status) {
+                    location.href = '/myOrders'
+                } else {
+                    alert("Payment Failed")
+                }
+            }
         })
     }
 

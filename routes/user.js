@@ -72,7 +72,10 @@ router.get('/logout', (req, res) => {
 router.get('/cart', verifyLogin,async(req, res ) => {
   let user = req.session.user._id
   let products=await userHelper.getCartProducts(req.session.user._id)
-  let total=await userHelper.getTotalAmount(req.session.user._id)
+  let total = 0
+  if(products.length>0){
+    total=await userHelper.getTotalAmount(req.session.user._id)
+  }  
   console.log('DARK   SCN   '+products);
   res.render('user/cart',{products,user:req.session.user._id,total,user})
 })
@@ -100,14 +103,17 @@ router.get('/place-order',verifyLogin, async(req,res)=>{
   res.render('user/place-order',{total,user:req.session.user._id,user})
 })
 
-router.post('/place-order',async(req,res)=>{
+router.post('/place-order',verifyLogin,async(req,res)=>{
+  console.log("success till here::::::::::::::::::::::::::");
   let products=await userHelper.getCartProduct(req.body.userId)
   let totalPrice=await userHelper.getTotalAmount(req.body.userId)
+  console.log("fetched price and cart");
   userHelper.placeOrder(req.body,products,totalPrice).then((orderId)=>{
     if(req.body['paymentMethod']==='cod'){
       res.json({codSuccess:true})
     }else{
       userHelper.generateRazorpay(orderId,totalPrice).then((response)=>{
+        console.log("user js place order");
         res.json(response)
       })
     }
@@ -126,7 +132,6 @@ router.get('/myOrders', verifyLogin,async(req, res ) => {
     cartCount=await userHelper.getCartCount(req.session.user._id)
   }
   console.log(order);
-  console.log(order.products);
   res.render('user/myOrders',{user:req.session.user._id,order,user,cartCount})
 })
 
@@ -137,5 +142,16 @@ router.get('/get-order-details/:id',verifyLogin,async(req,res)=>{
 
 router.post('/verify-payment',(req,res)=>{
   console.log(req.body);
+  userHelper.verifyPayment(req.body).then(()=>{
+    userHelper.changePaymentStatus(req.body['order[receipt]']).then(()=>{
+      res.json({status:true})
+    })
+  }).catch((err)=>{
+    console.log("user js verify payment post ");
+    console.log(err);
+    res.json({status:false,errMsg:''})
+  })
+
+
 })
 module.exports = router;
