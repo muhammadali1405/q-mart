@@ -9,7 +9,7 @@ function addToCart(proId) {
                 $("#cart-count").html(count);
                 //$(".addtocart-button").html("Added"); 
             }
-            alert("Added sucessfully, go to Cart to proceed to checkout")
+            
         }
     })
     

@@ -26,6 +26,19 @@ router.get('/adminLogin', (req, res) => {
 }) 
 
 
+router.get('/allOrders', async(req, res ) => {
+  let order = null;
+  order=await productHelper.getOrders()
+  console.log("admin js");
+  console.log(order);
+  if(order!=null){
+    res.render('admin/view-orders', { admin: true,order })
+  }else{
+    res.render('admin/view-orders', { admin: true })
+  }
+
+  
+})
 
 router.get('/add-product', function (req, res) {
 

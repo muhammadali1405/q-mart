@@ -30,34 +30,41 @@
 </div-->
 
 
+
 <div class="slide-container">
 
   <div class="wrapper " id="glasscont">
     {{#each products}}
-    
+
     <div class="clash-card glass barbarian" style="overflow:hidden;">
       <div class="clash-card__image clash-card__image--barbarian">
         <img style="height:90%;" src="/product-images/{{this._id}}.jpg" alt="..." />
       </div>
 
       <div class="clash-card__unit-name ">{{this.name}} </div>
-      
+
       <DIV ID="SectionName" STYLE="display:block;color:rgb(85, 84, 84);">{{this.description}}</DIV>
 
 
 
       <div class=" clash-card__unit-description" style="color: rgb(0, 0, 0)">
-        <span id="price" class="price" style="color: rgb(34, 44, 20);font-family: 'Space Grotesk', sans-serif;">Our Price :
+        <span id="price" class="price" style="color: rgb(34, 44, 20);font-family: 'Space Grotesk', sans-serif;">Our
+          Price :
           {{this.price}}/-</span>
         <br>
         Mrp: <span style="text-decoration: line-through;color:rgb(39, 25, 25);"> {{this.mrp}} </span>
       </div>
       <!--a class="btn btn-warning addtocart-button mt-3" style="padding: 2px 1px;font-size:12px;margin-bottom:5px;"
-        href="/add-to-cart/{{this._id}}"> Add to Cart</a-->
+        href="/add-to-cart/{{this._id}}"> Add to Cart</a>
       <button onclick="addToCart('{{this._id}}')" id="cartbtn" class=" btn addtocart-button mt-3"
-        style="padding: 2px 1px;font-size:12px;margin-bottom:5px;"> Add to cart </button>
+        style="padding: 2px 1px;font-size:12px;margin-bottom:5px;"> Add to cart </button-->
 
-    </div> 
+      <div class="buttons"> 
+        <button onclick="addToCart('{{this._id}}')" class="cart-button"> <span class="add-to-cart">Add to cart</span> <span
+            class="added" style="color: rgb(198, 255, 215);">Item added</span> <i class="fa fa-shopping-cart"></i> <i class="fa fa-square"></i> </button>
+      </div>
+
+    </div>
 
 
     {{/each}}
@@ -73,6 +80,145 @@
 
 
 <style>
+.buttons {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+.cart-button {
+    position: relative;
+    outline: 0;
+    background-color: #264B77 ;
+    color: #fff;
+    border: none;
+    height: 40px;
+    width: 200px;
+    padding: 10px;
+    border-radius: 10px;
+    line-height: 0px;
+    overflow: hidden;
+    cursor: pointer
+}
+.cart-button:hover{
+  background: #5d2677;
+}
+
+.cart-button:focus {
+    outline: none !important;
+    background: #480469;
+  
+  
+}
+
+.cart-button .fa-shopping-cart {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: -20%;
+    font-size: 1.8em;
+    transform: translate(-50%, -50%)
+}
+
+.cart-button .fa-square {
+    position: absolute;
+    z-index: 1;
+    top: -20%;
+    left: 53%;
+    font-size: 0.8em;
+    transform: translate(-50%, -50%)
+}
+
+.cart-button span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    color: #fff;
+    transform: translate(-50%, -50%)
+}
+
+.cart-button span.added {
+    opacity: 0
+}
+
+.cart-button.clicked .fa-shopping-cart {
+    animation: cart 2s ease-in forwards
+}
+
+.cart-button.clicked .fa-square {
+    animation: box 2s ease-in forwards
+}
+
+.cart-button.clicked span.add-to-cart {
+    animation: addcart 2s ease-in forwards
+}
+
+.cart-button.clicked span.added {
+    animation: added 2s ease-in forwards
+}
+
+@keyframes cart {
+    0% {
+        left: -10%
+    }
+
+    40%,
+    60% {
+        left: 50%
+    }
+
+    100% {
+        left: 110%
+    }
+}
+
+@keyframes box {
+
+    0%,
+    40% {
+        top: -20%
+    }
+
+    60% {
+        top: 36%;
+        left: 53%
+    }
+
+    100% {
+        top: 40%;
+        left: 112%
+    }
+}
+
+@keyframes addcart {
+
+    0%,
+    30% {
+        opacity: 1
+    }
+
+    30%,
+    100% {
+        opacity: 0
+    }
+}
+
+@keyframes added {
+
+    0%,
+    80% {
+        opacity: 0
+    }
+
+    100% {
+        opacity: 1
+    }
+}
+
+
+
   @import url(https://fonts.googleapis.com/css?family=Lato:400,700,900);
 
 
@@ -219,40 +365,61 @@
     right: 100px;
     z-index: 999;
   }
-  .addtocart-button{
-  background: #264B77;
-  color: rgb(255, 255, 255);
+
+  .addtocart-button {
+    background: #264B77;
+    color: rgb(255, 255, 255);
   }
-  .addtocart-button:hover{
+
+  .addtocart-button:hover {
     background: rgb(202, 8, 228);
   }
 
-.glass {
-    background: rgba(255,255,255, 0.2);
+  .glass {
+    background: rgba(255, 255, 255, 0.2);
     position: relative;
     z-index: 1;
     backdrop-filter: blur(10px);
     border: solid 2px transparent;
     background-clip: padding-box;
-    box-shadow: 10px 10px 10px  rgba(46, 98, 48, 0.05);
-}
+    box-shadow: 10px 10px 10px rgba(46, 98, 48, 0.05);
+  }
 
-.glass:hover{
+  .glass:hover {
     background: rgba(255, 255, 255, 0.603);
-}
-
+  }
 </style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
-<script>
- const glass = document.getElementById('glasscont');
- const tl = gsap.timeline({defaults: {ease: "power2.inOut", duration: 0.3}})
-    tl.from('img', { x: '-10%', opacity: 0})
-      .from('.one', { x: '-10%', opacity: 0})
-      .from('.two', { y: '-10%', opacity: 0})
-      .from('.three', { y: '-10%', opacity: 0})
-      .from('.four', { y: '-10%', opacity: 0})
-      .from('.six', { y: '-10%', opacity: 0})
-      
-</script>
 
+<script>
+
+
+
+
+  document.addEventListener("DOMContentLoaded", function (event) {
+
+
+    const cartButtons = document.querySelectorAll('.cart-button');
+
+    cartButtons.forEach(button => {
+
+      button.addEventListener('click', cartClick);
+
+    });
+
+    function cartClick() {
+      let button = this;
+      button.classList.add('clicked');
+    }
+
+
+
+  });
+
+
+
+
+
+
+</script>

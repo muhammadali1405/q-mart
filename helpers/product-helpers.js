@@ -54,5 +54,15 @@ module.exports = {
                 resolve()
             })
         })
-    }
+    },
+
+    getOrders:()=>{
+        return new Promise(async(resolve,reject)=>{
+            console.log("going to fetch");
+            let order=await db.get().collection(collection.ORDER_COLLECTION).find().toArray()
+            console.log("fetched from db");
+            console.log(order);
+            resolve(order)
+        })
+    },
 }
