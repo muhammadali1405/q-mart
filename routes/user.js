@@ -5,7 +5,7 @@ const productHelper = require('../helpers/product-helpers');
 const userHelpers = require('../helpers/user-helpers');
 const userHelper = require('../helpers/user-helpers');
 const verifyLogin=(req,res,next)=>{
-  if(req.session.user.loggedIn){
+  if(req.session.userLoggedIn){
     next()
   }else{
     res.redirect('/login')
@@ -45,16 +45,17 @@ router.post('/signup', (req, res) => {
   userHelper.doSignup(req.body).then((response) => {
     console.log(response);
     req.session.user = response
-    req.session.user.loggedIn=true
+    req.session.userLoggedIn=true
     res.redirect('/')
   })
 })
 
 router.post('/login', (req, res) => {
+  console.log(req.body);
   userHelper.doLogin(req.body).then((response) => {
     if (response.status) {
       req.session.user = response.user
-      req.session.user.loggedIn = true
+      req.session.userLoggedIn = true
       res.redirect('/')
     }
     else {
@@ -66,18 +67,25 @@ router.post('/login', (req, res) => {
 
 router.get('/logout', (req, res) => {
   req.session.user = null
+  req.session.userLoggedIn = false
   res.redirect('/')
 })
 
 router.get('/cart', verifyLogin,async(req, res ) => {
-  let user = req.session.user._id
-  let products=await userHelper.getCartProducts(req.session.user._id)
-  let total = 0
-  if(products.length>0){
-    total=await userHelper.getTotalAmount(req.session.user._id)
+  if(req.session.user){
+    cartCount=await userHelper.getCartCount(req.session.user._id)
+  }
+  if(cartCount){
+    var products=await userHelper.getCartProducts(req.session.user._id)
   }  
-  console.log('DARK   SCN   '+products);
-  res.render('user/cart',{products,user:req.session.user._id,total,user})
+  let total = 0
+  if(products){
+    total=await userHelper.getTotalAmount(req.session.user._id)
+    res.render('user/cart',{products,user:req.session.user._id,total})
+  }else{
+    res.render('user/cart')
+  }  
+  
 })
 
 router.get('/add-to-cart/:id',(req,res)=>{

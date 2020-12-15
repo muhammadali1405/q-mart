@@ -1,7 +1,7 @@
 <section>
     <div class="container">
         <div style="overflow-x:auto;">
-
+        {{#if products}}
             <table class="table mt-5" style="background: white;border-radius:10px;">
                 <thead>
                     <tr class=" table-sm" style="background: white;border-radius:10px;">
@@ -14,6 +14,7 @@
                     </tr>
                 </thead>
                 <tbody>
+        {{/if}}
 
                     {{#each products}}
 
@@ -38,7 +39,12 @@
                         </td-->
                         
                     </tr>
+         
+                    {{else}}
+                    <h1>Cart is empty</h1>
                     {{/each}}
+        {{#if products}}
+
                 <tr class="table total" style="color: rgb(53, 31, 49);background:rgb(255, 255, 255);">
                     <td colspan="2" class="text-right" style="font-family: 'Fugaz One', cursive;">Total  </td>
                     <td class="text-left" style="font-family: 'Fugaz One', cursive;">Amount:</td>
@@ -47,7 +53,7 @@
                 </tr>
                   <a href="/place-order" class="btn btn-outline-secondary float-right mt-4 mb-4 pl-5 pr-5" > <b> Checkout </b></a>
                 
-
+         {{/if}}
 
                 </tbody>
                 
