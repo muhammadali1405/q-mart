@@ -1,0 +1,55 @@
+<section class="container">
+    <h1> <b> All Users </b> </h1>
+    <a href="/signup" class="btn btn-outline-info">new user</a>
+    <table class="table table-striped mt-4" style="text-align: center;">
+        <thead>
+            <tr class="table-info">
+                <td>Name</td>
+                <td>Mobile Number</td>
+                <!--td></td>
+                <td></td-->
+            </tr>
+        </thead>
+        <tbody>
+            {{#each users}}
+            <tr>
+                <td>
+                    {{this.name}}
+                </td>
+                <td>
+                    {{this.mobile}}
+                </td>
+                <!--td>
+                  <button onclick="deleteUser('{{this._id}}')" class="btn btn-danger disabled">Delete User</button> <br>
+                    <p style="color: rgb(7, 87, 0);">coming soon</p>
+
+                </td>
+                <td>
+                    <a href="#" class="btn btn-outline-danger disabled">change Password</a>
+                    <p style="color: rgb(7, 87, 0);">coming soon</p>
+                </td-->
+            </tr>
+            {{/each}}
+        </tbody>
+
+    </table>
+</section>
+
+
+<script>
+    function deleteUser(userId) {
+        $.ajax({
+            url: '/admin/deleteUser/' + userId,
+            method: 'get',
+            success: (response) => {
+                alert("user removed ")
+                location.reload();
+                //$(".addtocart-button").html("Added"); 
+
+
+            }
+        })
+
+    }
+
+</script>

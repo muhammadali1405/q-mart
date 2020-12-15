@@ -116,6 +116,27 @@ module.exports = {
                     resolve(response)
                 })
         })
+    },
+    getUsers:()=>{
+        return new Promise(async(resolve,reject)=>{
+            console.log("going to fetch");
+            let users=await db.get().collection(collection.USER_COLLECTION).find().toArray()
+            console.log("fetched from db");
+            console.log(users);
+            resolve(users)
+        })
+
+    },
+    deleteUser:(userId)=>{
+        return new Promise((resolve,reject)=>{
+            console.log(userId);
+            db.get().collection(collection.USER_COLLECTION).updateOne(
+                { $pull:{ _id: objectId(userId) }
+            })
+            .then((response) => {
+                resolve(response)
+            })
+        })
     }
 }
 

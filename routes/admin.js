@@ -124,5 +124,23 @@ router.get('/toPacking/:id',(req,res)=>{
 })
 
 
+router.get('/allUsers', async(req, res ) => {
+  let users=await productHelper.getUsers()
+  console.log("admin js");
+  console.log(users);
+  res.render('admin/all-users', { admin: true,users })
+
+})
+
+router.get('/deleteUser/:id', (req, res ) => {
+  productHelper.deleteUser(req.params.id).then((response)=>{
+    console.log("admin js user delete");
+    console.log(response);
+    res.json(response)
+
+  })
+    
+})
+
 
 module.exports = router;

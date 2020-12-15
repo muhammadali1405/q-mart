@@ -73,7 +73,8 @@ router.get('/logout', (req, res) => {
 
 router.get('/cart', verifyLogin,async(req, res ) => {
   if(req.session.user){
-    cartCount=await userHelper.getCartCount(req.session.user._id)
+    cartCount=await userHelper.getCartCount(req.session.user._id);
+    user = req.session.user
   }
   if(cartCount){
     var products=await userHelper.getCartProducts(req.session.user._id)
@@ -82,6 +83,8 @@ router.get('/cart', verifyLogin,async(req, res ) => {
   if(products){
     total=await userHelper.getTotalAmount(req.session.user._id)
     res.render('user/cart',{products,user:req.session.user._id,total})
+  }else if(user){
+    res.render('user/cart',{user:req.session.user})
   }else{
     res.render('user/cart')
   }  
@@ -140,7 +143,7 @@ router.get('/myOrders', verifyLogin,async(req, res ) => {
     cartCount=await userHelper.getCartCount(req.session.user._id)
   }
   console.log(order);
-  res.render('user/myOrders',{user:req.session.user._id,order,user,cartCount})
+  res.render('user/myOrders',{user:req.session.user,order,cartCount})
 })
 
 router.get('/get-order-details/:id',verifyLogin,async(req,res)=>{
