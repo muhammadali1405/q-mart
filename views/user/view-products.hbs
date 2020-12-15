@@ -95,7 +95,7 @@
     color: #fff;
     border: none;
     height: 40px;
-    width: 200px;
+    width: 180px;
     padding: 10px;
     border-radius: 10px;
     line-height: 0px;
@@ -239,9 +239,6 @@
     padding-bottom: 40px;
 
 
-    &:focus {
-      outline: 0;
-    }
   }
 
 
@@ -263,7 +260,7 @@
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-  }
+    }
 
   .clash-card__image {
     position: relative;
@@ -388,6 +385,13 @@
   .glass:hover {
     background: rgba(255, 255, 255, 0.603);
   }
+  @media only screen and (max-width: 600px) {
+          .clash-card {
+            width: 47%;
+            margin:2px 1% 2px 1%;
+          }
+
+    }
 </style>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>

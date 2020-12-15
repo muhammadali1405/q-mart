@@ -94,5 +94,35 @@ router.post('/edit-product/:id', (req, res) => {
   })
 
 })
+router.get('/toShipped/:id',(req,res)=>{
+  console.log("admin js il vannu mwone");
+  console.log(req.params.id);
+  productHelpers.orderShipped(req.params.id).then((response)=>{
+    console.log("All set");
+    res.json(response)
+  })
+
+})
+
+router.get('/toDelivered/:id',(req,res)=>{
+  console.log("admin js il vannu mwone");
+  console.log(req.params.id);
+  productHelpers.orderDelivered(req.params.id).then((response)=>{
+    console.log("All set");
+    res.json(response)
+  })
+
+})
+router.get('/toPacking/:id',(req,res)=>{
+  console.log("admin js il vannu mwone");
+  console.log(req.params.id);
+  productHelpers.orderPacking(req.params.id).then((response)=>{
+    console.log("All set");
+    res.json(response)
+  })
+
+})
+
+
 
 module.exports = router;

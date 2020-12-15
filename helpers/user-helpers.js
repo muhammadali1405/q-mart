@@ -258,6 +258,10 @@ module.exports = {
                 getTotalAmount:price,
                 status:status,
                 date:new Date(),
+                orderStatus:'Packing',
+                Packing:true,
+                Shipped:false,
+                Delivered:false,
                 itemDetails:ordered
             }
             db.get().collection(collection.ORDER_COLLECTION).insertOne(orderObj).then((response)=>{
@@ -355,7 +359,7 @@ module.exports = {
             .updateOne({_id:objectId(orderId)},
                 {
                     $set:{
-                        status:'Paid'
+                        status:'Paid' 
                     }
                 }).then(()=>{
                     resolve()

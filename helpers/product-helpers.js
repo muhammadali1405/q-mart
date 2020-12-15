@@ -65,4 +65,59 @@ module.exports = {
             resolve(order)
         })
     },
+    orderShipped:(orderId)=>{
+        return new Promise((resolve,reject)=>{
+            console.log("Changing order Status");
+            db.get().collection(collection.ORDER_COLLECTION)
+            .updateOne({_id:objectId(orderId)},
+                {
+                    $set:{
+                        orderStatus:'Shipped',
+                        Shipped:true,
+                        Delivered:false,
+                        Packing:false
+                    }
+                }).then((response)=>{
+                    resolve(response)
+                })
+        })
+    },
+    orderDelivered:(orderId)=>{
+        return new Promise((resolve,reject)=>{
+            console.log("Changing order Status");
+            db.get().collection(collection.ORDER_COLLECTION)
+            .updateOne({_id:objectId(orderId)},
+                {
+                    $set:{
+                        orderStatus:'Delivered',
+                        Shipped:false,
+                        Delivered:true,
+                        Packing:false
+                    }
+                }).then((response)=>{
+                    resolve(response)
+                })
+        })
+    },
+
+    orderPacking:(orderId)=>{
+        return new Promise((resolve,reject)=>{
+            console.log("Changing order Status");
+            db.get().collection(collection.ORDER_COLLECTION)
+            .updateOne({_id:objectId(orderId)},
+                {
+                    $set:{
+                        orderStatus:'Packing',
+                        Shipped:false,
+                        Delivered:false,
+                        Packing:true
+                    }
+                }).then((response)=>{
+                    resolve(response)
+                })
+        })
+    }
 }
+
+
+
