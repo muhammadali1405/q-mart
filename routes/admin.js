@@ -15,6 +15,18 @@ router.get('/', function (req, res, next) {
 
 });
 
+
+
+router.get('/adminLogin', (req, res) => {
+  if (req.session.admin) {
+    res.redirect('/admin')
+  } else {
+    res.render('admin/admin-login', { admin: true })
+  }
+}) 
+
+
+
 router.get('/add-product', function (req, res) {
 
   res.render('admin/add-product', { admin: true })

@@ -340,8 +340,8 @@ module.exports = {
             const crypto = require('crypto');
             let hmac = crypto.createHmac('sha256', 'pGu3P1sw6KrQlopRP8RzmjUg'); //key_secret => pGu3P1sw6KrQlopRP8RzmjUg
             hmac.update(details['payment[razorpay_order_id]'] + '|' + details['payment[razorpay_payment_id]']);
-            hmac = hmac.digest('hex')
-            if(hmac==details['payment[razorpay_signature]']){
+            let generatedSignature = hmac.digest('hex');
+            if(generatedSignature==details['payment[razorpay_signature]']){
                 resolve()
             }else{
                 reject()
@@ -350,13 +350,14 @@ module.exports = {
     },
     changePaymentStatus:(orderId)=>{
         return new Promise((resolve,reject)=>{
+            console.log("passed verify");
             db.get().collection(collection.ORDER_COLLECTION)
-            .updateOne({_id:objectId(orderId)}),
+            .updateOne({_id:objectId(orderId)},
                 {
                     $set:{
-                        status:'placed'
+                        status:'Paid'
                     }
-                }.then(()=>{
+                }).then(()=>{
                     resolve()
                 })
         })

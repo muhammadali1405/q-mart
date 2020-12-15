@@ -1,11 +1,17 @@
+
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
+
+<script  src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+
 <section>
     <div class="admin-table container">
 
         <div class="row mt-4">
-            <a  style="font-size: 15px;" class="btn btn-info ml-auto" href="/admin/add-product">Add product</a>
+            <a style="font-size: 15px;" class="btn btn-info ml-auto" href="/admin/add-product">Add product</a>
         </div>
-
-        <table class="table mt-5">
+        <br>
+        <table class="table mt-5" id="productTable">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Name</th>
@@ -13,28 +19,36 @@
                     <th scope="col">Description</th>
                     <th scope="col">Price</th>
                     <th>Image</th>
-                    <th></th>
+                    <th>Options</th>
                 </tr>
             </thead>
             <tbody>
 
-             {{#each products}}
+                {{#each products}}
                 <tr>
                     <td>{{this.name}}</td>
                     <td>{{this.category}}</td>
                     <td>{{this.description}}</td>
-                    <td>{{this.price}} <span style="color: red;text-decoration:strike-through;"> ({{this.mrp}} ) </span></td>
+                    <td>{{this.price}} <span style="color: red;text-decoration:strike-through;"> ({{this.mrp}} ) </span>
+                    </td>
                     <td><img style="width: 50px;height:50px" src="/product-images/{{this._id}}.jpg" alt=""></td>
                     <td>
-                    <a href="/admin/edit-product/{{this._id}}" class="btn btn-primary"> Edit </a>
-                    <a href="/admin/delete-product/{{this._id}}" class="btn btn-danger" onclick="return confirm('Are you sure want to delete {{this.name}}..??')"> Delete </a>
-                        
-                    </td>                    
-                </tr> 
-                {{/each}}               
+                        <a href="/admin/edit-product/{{this._id}}" class="btn btn-primary"> Edit </a>
+                        <a href="/admin/delete-product/{{this._id}}" class="btn btn-danger"
+                            onclick="return confirm('Are you sure want to delete {{this.name}}..??')"> Delete </a>
+
+                    </td>
+                </tr>
+                {{/each}}
 
 
             </tbody>
         </table>
     </div>
 </section>
+<script>
+
+    $(document).ready(function () {
+        $('#productTable').DataTable();
+    });
+</script>
