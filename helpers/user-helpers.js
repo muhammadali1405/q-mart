@@ -365,6 +365,13 @@ module.exports = {
                     resolve()
                 })
         })
+    },
+    getProdDetails:(proId)=>{
+        return new Promise(async(resolve,reject)=>{
+            console.log("here at user helepr");
+            let details=await db.get().collection(collection.PRODUCT_COLLECTION).findOne({_id:objectId(proId)})
+            resolve(details)
+        })
     }
 
     

@@ -1,0 +1,252 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.5.1/gsap.min.js"></script>
+{{!-- 
+<div class="container">
+    <h5>{{proDet.name}}</h5>
+    
+    <h5>{{proDet.category}}</h5>
+    <h5>{{proDet.description}}</h5>
+    <h5>{{proDet.mrp}}</h5>
+    <h5>{{proDet.price}}</h5>
+</div> --}}
+<div class="left">
+    <table>
+        <th style="overflow: scroll;"><img class="imag" src="/product-images/{{proDet._id}}.jpg" alt="..." /></th>
+    </table>
+</div>
+
+<div class="right">
+    <h1>{{proDet.name}}</h1>
+
+    <h5> <i> category:</i> <strong> {{proDet.category}} </strong></h5>
+    <br>
+
+    <h5><i> <u> Description : </u></i> <strong> {{proDet.description}}</strong></h5>
+    <br>
+
+    <h5> <strong> M R P : <del  style="color: rgb(167, 73, 73);">{{proDet.mrp}}</del> /-</strong></h5>
+    <h2 style="color: rgb(26, 87, 21);"><strong> <span style="font-size:20px ;"> Our Price : </span> {{proDet.price}}
+            /-</strong></h2>
+
+    <div class="but">
+        <div class="buttons">
+            <button onclick="addToCart('{{proDet._id}}')" class="cart-button"> <span class="add-to-cart">Add to
+                    cart</span> <span class="added" style="color: rgb(198, 255, 215);">Item added</span> <i
+                    class="fa fa-shopping-cart"></i> <i class="fa fa-square"></i> </button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .left {
+        width: 35%;
+        float: left;
+    }
+
+    th {
+        width: 300px;
+        height: 500px;
+    }
+
+    table {
+
+        margin-left: 65px;
+        margin-top: 20px;
+    }
+
+    @media only screen and (min-width: 600px) {
+
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .right {
+        margin: 80px 0 0 0;
+        float: left;
+    }
+
+    @media only screen and (max-width: 600px) {
+        .left {
+            margin: 0;
+            width: 80%;
+        }
+
+        .imag {
+            max-width: 100%;
+            margin: 5%;
+        }
+
+        table {
+            margin: 0;
+        }
+
+        .right {
+            display: table-column;
+            margin: 50px 0 0 20%;
+            float: left;
+        }
+
+
+
+    }
+
+    .buttons {
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        bottom: 0;
+    }
+
+    .cart-button {
+        position: relative;
+        outline: 0;
+        background-color: #d606d6;
+        color: #fff;
+        border: none;
+        height: 40px;
+        width: 180px;
+        padding: 10px;
+        border-radius: 10px;
+        line-height: 0px;
+        overflow: hidden;
+        cursor: pointer
+    }
+
+    .cart-button:hover {
+        background: #6f289e;
+    }
+
+    .cart-button:focus {
+        outline: none !important;
+        background: #5d2677;
+
+
+    }
+
+    .cart-button .fa-shopping-cart {
+        position: absolute;
+        z-index: 2;
+        top: 50%;
+        left: -20%;
+        font-size: 1.8em;
+        transform: translate(-50%, -50%)
+    }
+
+    .cart-button .fa-square {
+        position: absolute;
+        z-index: 1;
+        top: -20%;
+        left: 53%;
+        font-size: 0.8em;
+        transform: translate(-50%, -50%)
+    }
+
+    .cart-button span {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        color: #fff;
+        transform: translate(-50%, -50%)
+    }
+
+    .cart-button span.added {
+        opacity: 0
+    }
+
+    .cart-button.clicked .fa-shopping-cart {
+        animation: cart 2s ease-in forwards
+    }
+
+    .cart-button.clicked .fa-square {
+        animation: box 2s ease-in forwards
+    }
+
+    .cart-button.clicked span.add-to-cart {
+        animation: addcart 2s ease-in forwards
+    }
+
+    .cart-button.clicked span.added {
+        animation: added 2s ease-in forwards
+    }
+
+    @keyframes cart {
+        0% {
+            left: -10%
+        }
+
+        40%,
+        60% {
+            left: 50%
+        }
+
+        100% {
+            left: 110%
+        }
+    }
+
+    @keyframes box {
+
+        0%,
+        40% {
+            top: -20%
+        }
+
+        60% {
+            top: 36%;
+            left: 53%
+        }
+
+        100% {
+            top: 40%;
+            left: 112%
+        }
+    }
+
+    @keyframes addcart {
+
+        0%,
+        30% {
+            opacity: 1
+        }
+
+        30%,
+        100% {
+            opacity: 0
+        }
+    }
+
+    @keyframes added {
+
+        0%,
+        80% {
+            opacity: 0
+        }
+
+        100% {
+            opacity: 1
+        }
+    }
+</style>
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+
+
+        const cartButtons = document.querySelectorAll('.cart-button');
+
+        cartButtons.forEach(button => {
+
+            button.addEventListener('click', cartClick);
+
+        });
+
+        function cartClick() {
+            let button = this;
+            button.classList.add('clicked');
+        }
+
+
+
+    });
+</script>

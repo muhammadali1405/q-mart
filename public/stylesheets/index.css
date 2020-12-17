@@ -62,3 +62,10 @@
     padding-top: 12px;
 }
 
+.f-ter{
+    background-position-y: bottom;
+    height: 10px;
+    width: 100%;
+    background: rgb(131,58,180);
+    background: linear-gradient(-90deg, rgba(131,58,180,1) 0%, rgba(253,29,244,1) 50%, rgba(255,166,42,1) 100%);
+}

@@ -163,7 +163,17 @@ router.post('/verify-payment',(req,res)=>{
     console.log(err);
     res.json({status:false,errMsg:''})
   })
-
-
 })
+  
+router.get('/viewDetails/:id',verifyLogin,async(req,res)=>{
+  console.log("here");
+  console.log(req.params.id);
+  let proDet = await userHelper.getProdDetails(req.params.id)
+  console.log(proDet);
+  res.render('user/view-details',{user:req.session.user,proDet})
+  
+  
+})
+
+
 module.exports = router;
