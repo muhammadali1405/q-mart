@@ -16,7 +16,7 @@ function addToCart(proId) {
     
 }
 
-function changeQuantity(cartId, proId,userId, count) {
+function changeQuantity(cartId, proId, userId, count) {
     let quantity = parseInt(document.getElementById(proId).innerHTML)
     count = parseInt(count)
 
