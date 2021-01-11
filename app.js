@@ -13,7 +13,7 @@ var fileUpload = require('express-fileupload')
 var db = require('./config/connection')
 var session = require('express-session')
 
-//set port
+//   ok set port
 var port = process.env.PORT || 8080
 
 // view engine setup
